@@ -9,12 +9,13 @@ module Features
     def sign_in
       password = "password"
       user = FactoryBot.create(:user, password: password)
-      sign_in_with user.email, password
+      sign_in_with user.email, user.username, password
     end
 
-    def sign_in_with(email, password)
+    def sign_in_with(email, username, password)
       visit sign_in_path
       fill_in "session_email", with: email
+      fill_in "session_username", with: username
       fill_in "session_password", with: password
       click_button I18n.t("helpers.submit.session.submit")
     end
@@ -23,9 +24,10 @@ module Features
       click_link I18n.t("layouts.application.sign_out")
     end
 
-    def sign_up_with(email, password)
+    def sign_up_with(email, username, password)
       visit sign_up_path
       fill_in "user_email", with: email
+      fill_in "user_username", with: username
       fill_in "user_password", with: password
       click_button I18n.t("helpers.submit.user.create")
     end

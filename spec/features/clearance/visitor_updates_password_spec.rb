@@ -13,7 +13,7 @@ RSpec.feature "Visitor updates password" do
     user = user_with_reset_password
     update_password user, "newpassword"
     sign_out
-    sign_in_with user.email, "newpassword"
+    sign_in_with user.email, user.username, "newpassword"
 
     expect_user_to_be_signed_in
   end
