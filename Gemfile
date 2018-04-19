@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'clearance'
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'factory_bot_rails', '~> 4.8.2'
   gem 'rspec-rails', '~> 3.7.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
