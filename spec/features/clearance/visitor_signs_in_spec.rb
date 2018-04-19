@@ -2,30 +2,51 @@ require "rails_helper"
 require "support/features/clearance_helpers"
 
 RSpec.feature "Visitor signs in" do
-  scenario "with valid email, username and password" do
+  scenario "with valid email and password" do
     create_user "user@example.com", "username", "password"
-    sign_in_with "user@example.com", "username", "password"
+    sign_in_with "user@example.com", "password"
 
     expect_user_to_be_signed_in
   end
 
-  scenario "with valid mixed-case email, username and password " do
+  scenario "with valid username and password" do
+    create_user "user@example.com", "username", "password"
+    sign_in_with "username", "password"
+
+    expect_user_to_be_signed_in
+  end
+
+  scenario "with valid mixed-case email and password " do
     create_user "user.name@example.com", "username", "password"
-    sign_in_with "User.Name@example.com", "username", "password"
+    sign_in_with "User.Name@example.com", "password"
+
+    expect_user_to_be_signed_in
+  end
+
+  scenario "with valid mixed-case username and password " do
+    create_user "user.name@example.com", "username", "password"
+    sign_in_with "UserNamE", "password"
 
     expect_user_to_be_signed_in
   end
 
   scenario "tries with invalid password" do
     create_user "user@example.com", "username", "password"
-    sign_in_with "user@example.com", "username", "wrong_password"
+    sign_in_with "user@example.com", "wrong_password"
 
     expect_page_to_display_sign_in_error
     expect_user_to_be_signed_out
   end
 
   scenario "tries with invalid email" do
-    sign_in_with "unknown.email@example.com", "username", "password"
+    sign_in_with "unknown.email@example.com", "password"
+
+    expect_page_to_display_sign_in_error
+    expect_user_to_be_signed_out
+  end
+
+  scenario "tries with invalid username" do
+    sign_in_with "unknown", "password"
 
     expect_page_to_display_sign_in_error
     expect_user_to_be_signed_out
