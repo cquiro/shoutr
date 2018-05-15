@@ -16,9 +16,9 @@ class ShoutsController < ApplicationController
 
   def redirect_options_for(shout)
     if shout.persisted?
-      { notice: "Shouted successfullly" }
+      { notice: "Shouted successfully." }
     else
-      { alert: "Could not shout" }
+      { alert: "Could not shout." }
     end
   end
 end
