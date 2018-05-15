@@ -28,6 +28,6 @@ RSpec.describe Shout, type: :model do
     shout2 = create(:shout, body: 'Second in the list.', created_at: 2.hours.ago)
     shout3 = create(:shout, body: 'Third in the list.', created_at: 3.hours.ago)
 
-    expect(Shout.all.first).to eq shout1
+    expect(Shout.all).to eq [shout1, shout2, shout3]
   end
 end
