@@ -5,6 +5,10 @@ RSpec.describe DashboardsController, type: :controller do
     @user ||= create(:user)
   end
 
+  def content
+    @content ||= create(:text_shout)
+  end
+
   describe "GET #show" do
     before :each do
       sign_in(user)
@@ -16,7 +20,7 @@ RSpec.describe DashboardsController, type: :controller do
     end
 
     it 'assigns the user\'s shouts to @shouts' do
-      create_list(:shout, 3, user: user)
+      create_list(:shout, 3, content: content, user: user)
       get :show
       expect(assigns(:shouts)).to eq user.shouts
     end

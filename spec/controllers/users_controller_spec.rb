@@ -12,7 +12,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'assigns the user\'s shouts to @shouts' do
-      create_list(:shout, 3, user: user)
+      create_list(:shout, 3, user: user, content: build_stubbed(:text_shout))
       get :show, params: { id: user }
       expect(assigns(:shouts)).to eq user.shouts
     end
