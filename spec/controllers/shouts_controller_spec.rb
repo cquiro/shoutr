@@ -23,7 +23,8 @@ RSpec.describe ShoutsController, type: :controller do
     context 'with valid attributes' do
       it 'creates a shout' do
         expect{
-          post :create, params: { shout: { content: { body: 'Hello shout!' } } }
+          post :create, params: { shout: { content_type: 'TextShout',
+                                           content: { body: 'Hello shout!' } } }
         }.to change(Shout, :count).by(1)
       end
 
@@ -33,7 +34,8 @@ RSpec.describe ShoutsController, type: :controller do
       end
 
       it 'sets flash[:notice] message' do
-        post :create, params: { shout: { content: { body: 'Hello shout!' } } }
+        post :create, params: { shout: { content_type: 'TextShout',
+                                         content: { body: 'Hello shout!' } } }
         expect(flash[:notice]).to eq "Shouted successfully."
       end
     end
