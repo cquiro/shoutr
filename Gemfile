@@ -16,8 +16,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'clearance'
 gem 'paperclip', '~> 6.0.0'
+gem 'sunspot_rails', '~> 2.3.0'
 
 group :development, :test do
+  gem 'sunspot_solr', '~> 2.3.0'
   gem 'pry-rails'
   gem 'factory_bot_rails', '~> 4.8.2'
   gem 'rspec-rails', '~> 3.7.0'
